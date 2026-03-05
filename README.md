@@ -1,12 +1,12 @@
 # 🛒 Ecommerce Catalog API
 
-A RESTful API for managing an ecommerce product catalog with authentication, subscriber notifications, and admin controls — built with Node.js, Express, and MongoDB.
+A RESTful API for managing an e-commerce product catalog with authentication, subscriber notifications, and admin controls — built with Node.js, Express, and MongoDB.
 
 ---
 
 ## 🚀 Features
 
-- **Product Management** — Create, read, update, delete products with image management, stock control, filtering, sorting, and pagination
+- **Product Management** — Create, read, update, and delete products with image management, stock control, filtering, sorting, and pagination
 - **Authentication** — JWT-based auth with role-based access control (user/admin)
 - **Subscriber System** — Email subscriptions with welcome emails and new product notifications
 - **Admin Controls** — Send promotional emails to all subscribers
@@ -23,7 +23,7 @@ A RESTful API for managing an ecommerce product catalog with authentication, sub
 - **Database** — MongoDB with Mongoose
 - **Authentication** — JSON Web Tokens (JWT)
 - **Validation** — Joi
-- **Email** — Nodemailer with Resend SMTP
+- **Email** — Nodemailer with Gmail SMTP
 - **Password Hashing** — bcryptjs
 
 ---
@@ -78,7 +78,7 @@ index.js
 
 - Node.js v18+
 - MongoDB Atlas account
-- Resend account (for emails)
+- G Mail account (for emails)
 
 ### Installation
 
@@ -98,7 +98,7 @@ npm install
 Create a `.env` file in the root directory:
 
 ```bash
-PORT=4007
+PORT=your port number
 MONGODB_URI=your_mongodb_connection_string
 NODE_ENV=development
 
@@ -107,7 +107,8 @@ JWT_SECRET=your_jwt_secret_key
 JWT_EXPIRES_IN=7d
 
 # Email (Resend)
-RESEND_API_KEY=your_resend_api_key
+EMAIL_USER=your_gmail_address
+EMAIL_PASS=your_gmail_app_password
 EMAIL_FROM_NAME=Your Store Name
 ```
 
@@ -117,9 +118,6 @@ EMAIL_FROM_NAME=Your Store Name
 # Development
 npm run dev
 
-# Production
-npm start
-```
 
 ---
 
@@ -229,6 +227,9 @@ All errors follow this format:
 ---
 
 ## 📮 API Documentation
+Full interactive API documentation available on Postman:
+
+[👉 View API Documentation](https://documenter.getpostman.com/view/50244835/2sBXcKCdug)
 
 ## 📝 Changelog
 
@@ -245,13 +246,4 @@ All errors follow this format:
 - Refresh tokens
 - Multer - to handle file upload
 - cloudinary or AWS - to store the image
-- Return the image URL and saving it to the product
-
-
-Full interactive API documentation available on Postman:
-
-[👉 View API Documentation](https://documenter.getpostman.com/view/50244835/2sBXcKCdug)
-
-
-
-This project is licensed under Tech Crush
+- Return the image URL and save it to the product
