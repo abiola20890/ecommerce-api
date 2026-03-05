@@ -84,7 +84,7 @@ index.js
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ecommerce-api.git
+git clone https://github.com/abiola20890/ecommerce-api.git
 
 # Navigate into the project
 cd ecommerce-api
