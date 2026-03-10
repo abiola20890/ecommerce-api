@@ -95,7 +95,7 @@ npm install
 
 ### Environment Variables
 
-Create a `.env` file in the root directory:
+Copy `.env.example` to `.env` and fill in your values:
 
 ```bash
 PORT=your port number
@@ -106,9 +106,9 @@ NODE_ENV=development
 JWT_SECRET=your_jwt_secret_key
 JWT_EXPIRES_IN=7d
 
-# Email (Resend)
-EMAIL_USER=your_gmail_address
-EMAIL_PASS=your_gmail_app_password
+# Email (Gmail)
+GMAIL_USER=your_gmail_address
+GMAIL_PASS=your_gmail_password
 EMAIL_FROM_NAME=Your Store Name
 ```
 
@@ -118,6 +118,9 @@ EMAIL_FROM_NAME=Your Store Name
 # Development
 npm run dev
 
+# Production
+npm start
+```
 
 ---
 
