@@ -7,7 +7,7 @@ import {
 import {
     validateCreateProduct, validateUpdateProduct,
     validateUpdateProductBody, validateUpdateStock, validateProductId
-} from "../validations/product.validation.js";
+} from "../validations/product.validation.js"
 import { addImagesToProductById, removeImageFromProductById } from "../controllers/productImage.controller.js";
 import { protect, adminOnly } from "../middleware/auth.middleware.js";
 

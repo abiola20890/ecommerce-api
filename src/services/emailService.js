@@ -1,14 +1,15 @@
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.resend.com",
+    port: 465,
+    secure: true,
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        user: "resend",
+        pass: process.env.RESEND_API_KEY
     }
 });
 
-// Verify transporter config on startup
 transporter.verify((error) => {
     if (error) {
         console.error(`Email transporter config error: ${error.message}`);
@@ -20,17 +21,15 @@ transporter.verify((error) => {
 export const sendEmail = async (to, subject, { text, html } = {}) => {
     try {
         await transporter.sendMail({
-            from: `"${process.env.EMAIL_FROM_NAME}" <${process.env.EMAIL_USER}>`,
+            from: `"${process.env.EMAIL_FROM_NAME}" <onboarding@resend.dev>`,
             to,
             subject,
             text,
             html
         });
-
         console.log(`Email sent to ${to}`);
     } catch (error) {
         console.error(`Error sending email to ${to}: ${error.message}`);
-        // Rethrow so the caller knows the email failed
         throw error;
     }
 };

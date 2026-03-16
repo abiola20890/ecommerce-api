@@ -23,7 +23,7 @@ A RESTful API for managing an e-commerce product catalog with authentication, su
 - **Database** — MongoDB with Mongoose
 - **Authentication** — JSON Web Tokens (JWT)
 - **Validation** — Joi
-- **Email** — Nodemailer with Gmail SMTP
+- **Email** — Nodemailer with Resend SMTP
 - **Password Hashing** — bcryptjs
 
 ---
@@ -78,7 +78,7 @@ index.js
 
 - Node.js v18+
 - MongoDB Atlas account
-- G Mail account (for emails)
+- Resend account (for emails)
 
 ### Installation
 
@@ -106,10 +106,9 @@ NODE_ENV=development
 JWT_SECRET=your_jwt_secret_key
 JWT_EXPIRES_IN=7d
 
-# Email (Gmail)
-GMAIL_USER=your_gmail_address
-GMAIL_PASS=your_gmail_password
-EMAIL_FROM_NAME=Your Store Name
+# Email (Resend)
+RESEND_API_KEY=your RESEND_API_KEY
+EMAIL_FROM_NAME= your email EMAIL_FROM_NAME
 ```
 
 ### Run the Server
