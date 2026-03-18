@@ -1,38 +1,31 @@
-import nodemailer from "nodemailer";
-
-const transporter = nodemailer.createTransport({
-  host: "smtp.resend.com",
-  port: 587,         // Use 587 for STARTTLS
-  secure: false,     // false because STARTTLS upgrades the connection
-  auth: {
-    user: "resend",
-    pass: process.env.RESEND_API_KEY,
-  },
-  tls: {
-    rejectUnauthorized: false, // optional: avoid certificate errors in some cloud environments
-  },
-});
-
-transporter.verify((error) => {
-  if (error) {
-    console.error(`Email transporter config error: ${error.message}`);
-  } else {
-    console.log("Email transporter is ready");
-  }
-});
+import fetch from "node-fetch";
 
 export const sendEmail = async (to, subject, { text, html } = {}) => {
   try {
-    await transporter.sendMail({
-      from: `"${process.env.EMAIL_FROM_NAME}" <onboarding@resend.dev>`,
-      to,
-      subject,
-      text,
-      html,
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: `${process.env.EMAIL_FROM_NAME} <noreply@samson.name.ng>`,
+        to,
+        subject,
+        text,
+        html,
+      }),
     });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(JSON.stringify(errorData));
+    }
+
     console.log(`Email sent to ${to}`);
-  } catch (error) {
-    console.error(`Error sending email to ${to}: ${error.message}`);
-    throw error;
+    return await response.json();
+  } catch (err) {
+    console.error(`Error sending email to ${to}: ${err.message}`);
+    throw err;
   }
 };
